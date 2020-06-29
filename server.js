@@ -1,4 +1,7 @@
 const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -22,12 +25,9 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
 
-// readline.question('Enter dbUsername?', name => {
-//     if (name) {
-//         readline.question('Enter dbPassword', password => {
-//             if (password) {
+console.log("#### ", process.env.id);
 
-const connectionString = `mongodb+srv://${precess.env.ID}:${process.env.PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
+const connectionString = `mongodb+srv://${process.env.ID}:${process.env.PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
 mongoose.connect(connectionString, {
     useUnifiedTopology: true,
     useNewUrlParser: true
@@ -48,9 +48,9 @@ app.listen(PORT, function () {
 //         process.exit(-1)
 //     }
 // });
-app.listen(PORT, function () {
-    console.log("Server is running on Port: " + PORT);
-});
+// app.listen(PORT, function () {
+//     console.log("Server is running on Port: " + PORT);
+// });
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
