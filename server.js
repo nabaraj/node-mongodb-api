@@ -9,7 +9,7 @@ const shoppingList = require("./routes/shoppingRoutes");
 
 const mongoose = require('mongoose');
 
-const PORT = 4000;
+const PORT = process.env.PORT || 8081;
 
 
 
@@ -22,33 +22,35 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
 
-readline.question('Enter dbUsername?', name => {
-    if (name) {
-        readline.question('Enter dbPassword', password => {
-            if (password) {
+// readline.question('Enter dbUsername?', name => {
+//     if (name) {
+//         readline.question('Enter dbPassword', password => {
+//             if (password) {
 
-                const connectionString = `mongodb+srv://${name}:${password}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
-                mongoose.connect(connectionString, {
-                    useUnifiedTopology: true,
-                    useNewUrlParser: true
-                });
-                const connection = mongoose.connection;
+//                 const connectionString = `mongodb+srv://${name}:${password}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
+//                 mongoose.connect(connectionString, {
+//                     useUnifiedTopology: true,
+//                     useNewUrlParser: true
+//                 });
+//                 const connection = mongoose.connection;
 
-                connection.once('open', function () {
-                    console.log("MongoDB database connection established successfully");
-                });
-                readline.close();
-                app.listen(PORT, function () {
-                    console.log("Server is running on Port: " + PORT);
-                });
-            }
-        })
+//                 connection.once('open', function () {
+//                     console.log("MongoDB database connection established successfully");
+//                 });
+//                 readline.close();
+//                 app.listen(PORT, function () {
+//                     console.log("Server is running on Port: " + PORT);
+//                 });
+//             }
+//         })
 
-    } else {
-        process.exit(-1)
-    }
+//     } else {
+//         process.exit(-1)
+//     }
+// });
+app.listen(PORT, function () {
+    console.log("Server is running on Port: " + PORT);
 });
-
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
