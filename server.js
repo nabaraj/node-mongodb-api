@@ -27,20 +27,20 @@ const readline = require('readline').createInterface({
 
 // console.log("#### ", process.env.id);
 
-const connectionString = `mongodb+srv://${process.env.ID}:${process.env.PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
-mongoose.connect(connectionString, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-});
-const connection = mongoose.connection;
+// const connectionString = `mongodb+srv://${process.env.ID}:${process.env.PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
+// mongoose.connect(connectionString, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true
+// });
+// const connection = mongoose.connection;
 
-connection.once('open', function () {
-    console.log("MongoDB database connection established successfully");
-});
-readline.close();
-app.listen(PORT, function () {
-    console.log("Server is running on Port: " + PORT);
-});
+// connection.once('open', function () {
+//     console.log("MongoDB database connection established successfully");
+// });
+// readline.close();
+// app.listen(PORT, function () {
+//     console.log("Server is running on Port: " + PORT);
+// });
 //             }
 //         })
 
