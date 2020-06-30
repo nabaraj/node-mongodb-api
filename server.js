@@ -25,7 +25,7 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
 
-console.log("#### ", process.env.id);
+console.log("#### ", process.env.id, process.env.PORT);
 console.log("#### ", process.env.pass);
 
 const connectionString = `mongodb+srv://${process.env.ID}:${process.env.PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
