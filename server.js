@@ -28,7 +28,7 @@ const readline = require('readline').createInterface({
 console.log("#### ", process.env.DATABASE_ID, process.env.DATABASE_PASS);
 console.log("#### ", process.env.pass);
 
-const connectionString = `mongodb+srv://${process.env.process.env.DATABASE_ID}:${process.env.DATABASE_PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
+const connectionString = `mongodb+srv://${process.env.DATABASE_ID}:${process.env.DATABASE_PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
 mongoose.connect(connectionString, {
     useUnifiedTopology: true,
     useNewUrlParser: true
