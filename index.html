@@ -11,8 +11,58 @@
 
 <body>
     <div class="container">
+        Click on the buttons to check the api Data.
         <a href="/shoppingList" class="btn btn-success">Shopping List</a>
         <a href="/todos" class="btn btn-success">Todo List</a>
+
+        All api methods and path
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Method</td>
+                <td> Path</td>
+            </tr>
+            <tr>
+                <td>Show Product lists </td>
+                <td>GET </td>
+                <td>/shoppingList
+            </tr>
+            <tr>
+                <td>Post new product </td>
+                <td>POST </td>
+                <td>/shoppingList/add</td>
+            </tr>
+            <tr>
+                <td>Get by ID </td>
+                <td>GET </td>
+                <td>/shoppingList/:id</td>
+            </tr>
+            <tr>
+                <td>Sort Productlist </td>
+                <td>GET </td>
+                <td>/shoppingList/sort/:sortMethod</td>
+            </tr>
+            <tr>
+                <td>------ </td>
+                <td>Todo Route </td>
+                <td>------</td>
+            </tr>
+            <tr>
+                <td>Show all todo list </td>
+                <td>GET </td>
+                <td>/todos</td>
+            </tr>
+            <tr>
+                <td>Show todo by id </td>
+                <td>GET </td>
+                <td>/todos/:id</td>
+            </tr>
+            <tr>
+                <td>update todo by id </td>
+                <td>POST </td>
+                <td>/update/:id</td>
+            </tr>
+        </table>
     </div>
 </body>
 
