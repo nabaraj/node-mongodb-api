@@ -49,8 +49,5 @@ todoRoutes.route('/update/:id').post(function (req, res) {
             });
     });
 });
-todoRoutes.route("/shoppingList").get(function (req, res) {
-
-})
 
 module.exports = todoRoutes;

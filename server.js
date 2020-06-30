@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const todoRoutes = require("./routes/todoRoute");
 const shoppingList = require("./routes/shoppingRoutes");
-// const MongoClient = require('mongodb').MongoClient;
 
 const mongoose = require('mongoose');
 
@@ -25,8 +24,6 @@ const readline = require('readline').createInterface({
     output: process.stdout
 });
 
-console.log("#### ", process.env.DATABASE_ID, process.env.DATABASE_PASS);
-console.log("#### ", process.env.pass);
 
 const connectionString = `mongodb+srv://${process.env.DATABASE_ID}:${process.env.DATABASE_PASS}@cluster0-ouok3.mongodb.net/test?retryWrites=true&w=majority`
 mongoose.connect(connectionString, {
@@ -42,16 +39,6 @@ readline.close();
 app.listen(PORT, function () {
     console.log("Server is running on Port: " + PORT);
 });
-//             }
-//         })
-
-//     } else {
-//         process.exit(-1)
-//     }
-// });
-// app.listen(PORT, function () {
-//     console.log("Server is running on Port: " + PORT);
-// });
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
