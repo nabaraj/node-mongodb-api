@@ -12,7 +12,8 @@ api is live in [here](http://nodeexpressapi-env.eba-t9xjnrsi.us-west-1.elasticbe
 | Show Product lists | GET |/shoppingList|
 | Post new product | POST |/shoppingList/add|
 | Get by ID | GET |/shoppingList/:id|
-| Sort Productlist | GET |/shoppingList/sort/:sortMethod|
+| Delete product | DELETE |/delete/:id|
+| Sort Productlist | GET |shoppingList/?sortBy=<code>field name</code>&orderBy=<code>asc or desc</code>|
 | ------ | Todo Route | ------ |
 | Show all todo list | GET |/todos|
 | Show todo by id | GET |/todos/:id|
