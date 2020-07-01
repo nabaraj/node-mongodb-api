@@ -5,7 +5,7 @@ let ShoppingListModel = require('../models/shopping.model');
 shoppingList.route('/').get(function (req, res) {
     ShoppingListModel.find(function (err, listItem) {
         if (err) {
-            console.log(err);
+            res.status(404).send("data not found");
         } else {
             res.json(listItem);
         }
@@ -24,7 +24,7 @@ shoppingList.route('/add').post(function (req, res) {
 shoppingList.route('/:id').get(function (req, res, next) {
     var id = req.params.id;
     ShoppingListModel.findById(id, function (err, results) {
-        if (err) return console.error(err)
+        if (err) res.status(404).send("data not found");
         try {
             console.log(results);
             res.json(results);
@@ -45,7 +45,7 @@ shoppingList.route('/sort/:sortMethod').get(function (req, res, next) {
     ShoppingListModel.find({}).sort(mySort).exec(function (err, docs) {
         // console.log("#### ", req.params);
         // let { field: 'asc', test: -1 }
-        if (err) return console.error(err)
+        if (err) res.status(404).send("data not found");
         try {
             // console.log(docs);
             res.json(docs);

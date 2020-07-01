@@ -7,7 +7,7 @@ todoRoutes.route('/').get(function (req, res) {
     Todo.find(function (err, todos) {
 
         if (err) {
-            console.log(err);
+            res.status(404).send("data not found");
         } else {
             res.json(todos);
         }
@@ -16,6 +16,7 @@ todoRoutes.route('/').get(function (req, res) {
 todoRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
     Todo.findById(id, function (err, todo) {
+        if (err) res.status(404).send("data not found");
         res.json(todo);
     });
 });
@@ -34,7 +35,7 @@ todoRoutes.route('/add').post(function (req, res) {
 todoRoutes.route('/update/:id').post(function (req, res) {
     Todo.findById(req.params.id, function (err, todo) {
         if (!todo)
-            res.status(404).send("data is not found");
+            res.status(404).send("data not found");
         else
             todo.todo_description = req.body.todo_description;
         todo.todo_responsible = req.body.todo_responsible;
