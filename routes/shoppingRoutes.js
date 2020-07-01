@@ -3,9 +3,13 @@ const shoppingList = express.Router();
 let ShoppingListModel = require('../models/shopping.model');
 
 shoppingList.route('/').get(function (req, res) {
-    ShoppingListModel.find(function (err, listItem) {
+    let sort = {};
+    if (req.query.sortBy && req.query.orderBy) {
+        sort[req.query.sortBy] = req.query.orderBy === 'desc' ? -1 : 1
+    }
+    ShoppingListModel.find({}, null, { sort }, function (err, listItem) {
         if (err) {
-            res.status(404).send("data not found");
+            res.status(404).send("Data not found");
         } else {
             res.json(listItem);
         }
@@ -15,7 +19,7 @@ shoppingList.route('/add').post(function (req, res) {
     let sl = new ShoppingListModel(req.body);
     sl.save()
         .then(sli => {
-            res.status(200).json({ 'sli': 'product added successfully' });
+            res.status(200).json({ 'success': 'product added successfully' });
         })
         .catch(err => {
             res.status(400).send('adding new product failed');
@@ -24,7 +28,7 @@ shoppingList.route('/add').post(function (req, res) {
 shoppingList.route('/:id').get(function (req, res, next) {
     var id = req.params.id;
     ShoppingListModel.findById(id, function (err, results) {
-        if (err) res.status(404).send("data not found");
+        if (err) res.status(404).send("Data not found");
         try {
             console.log(results);
             res.json(results);
@@ -35,26 +39,22 @@ shoppingList.route('/:id').get(function (req, res, next) {
     })
 
 });
-shoppingList.route('/sort/:sortMethod').get(function (req, res, next) {
+shoppingList.route('/delete/:id').delete(function (req, res, next) {
 
-    let sortMethod = JSON.parse(req.params.sortMethod);
-    let field = sortMethod.field, method = sortMethod.method;
-    let mySort = {};
-    mySort[field] = method;
-    console.log(mySort)
-    ShoppingListModel.find({}).sort(mySort).exec(function (err, docs) {
-        // console.log("#### ", req.params);
-        // let { field: 'asc', test: -1 }
+    var idVal = req.params.id;
+    if (!idVal) res.status(404).send("data not found");
+
+    var query = { _id: idVal }
+    ShoppingListModel.deleteOne(query, function (err, results) {
         if (err) res.status(404).send("data not found");
         try {
-            // console.log(docs);
-            res.json(docs);
+            console.log(results);
+            res.json(results);
         } catch (error) {
             console.log("errror getting results")
-            console.log(error)
+            res.status(404).send("data not found");
         }
-        // res.json("found")
-    });
+    })
 
 });
 
