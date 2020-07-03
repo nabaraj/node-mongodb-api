@@ -3,6 +3,8 @@
 ```
 npm install
 npm start
+npm run test \\for single test run
+npm run test:watch \\test with watch
 ```
 api is live in [here](http://nodeexpressapi-env.eba-t9xjnrsi.us-west-1.elasticbeanstalk.com/)
 
